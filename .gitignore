@@ -1,0 +1,9 @@
+.DS_Store
+*.test
+*.out
+*.bin
+*.lc3db
+/golc3
+!golc3/
+/golc3-asm
+!golc3-asm/
