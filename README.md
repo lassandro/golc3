@@ -431,15 +431,15 @@ lines.
 PC: 0x0200  PS: 0x8000
 (dbg) source 10
 [0x0200] LD R7 MEMSPACE_USER
-[0x0202] JMPT R7
+[0x0201] JMPT R7
 ~~~~~~~~
 ~~~~~~~~ HANDLE_KEY
-[0x0204]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
-[0x0206]     LDI R1 DEVICE_KBDR ; Read keyboard data value
-[0x0208]     STI R1 DEVICE_DDR  ; Print key back out to device
-[0x020a]     RTI
+[0x0202]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
+[0x0203]     LDI R1 DEVICE_KBDR ; Read keyboard data value
+[0x0204]     STI R1 DEVICE_DDR  ; Print key back out to device
+[0x0205]     RTI
 ~~~~~~~~
-[0x020e] MEMSPACE_USER .FILL 0x3000
+[0x0206] MEMSPACE_USER .FILL 0x3000
 ```
 
 If a base-10 integer is provided for the second argument, it can be used in
@@ -449,18 +449,18 @@ or less if it reaches the end of the source file first:
 ```bash
 (dbg) source 0x0200 100
 [0x0200] LD R7 MEMSPACE_USER
-[0x0202] JMPT R7
+[0x0201] JMPT R7
 ~~~~~~~~
 ~~~~~~~~ HANDLE_KEY
-[0x0204]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
-[0x0206]     LDI R1 DEVICE_KBDR ; Read keyboard data value
-[0x0208]     STI R1 DEVICE_DDR  ; Print key back out to device
-[0x020a]     RTI
+[0x0202]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
+[0x0203]     LDI R1 DEVICE_KBDR ; Read keyboard data value
+[0x0204]     STI R1 DEVICE_DDR  ; Print key back out to device
+[0x0205]     RTI
 ~~~~~~~~
-[0x020e] MEMSPACE_USER .FILL 0x3000
-[0x0210] DEVICE_KBSR   .FILL 0xFE00
-[0x0212] DEVICE_KBDR   .FILL 0xFE02
-[0x0214] DEVICE_DDR    .FILL 0xFE06
+[0x0206] MEMSPACE_USER .FILL 0x3000
+[0x0207] DEVICE_KBSR   .FILL 0xFE00
+[0x0208] DEVICE_KBDR   .FILL 0xFE02
+[0x0209] DEVICE_DDR    .FILL 0xFE06
 ~~~~~~~~
 ~~~~~~~~ ;; User Memory Space
 ~~~~~~~~ .ORIG 0x3000
@@ -473,15 +473,15 @@ showing the source code attributed to a given label:
 
 ```bash
 (dbg) source HANDLE_KEY 10
-[0x0204]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
-[0x0206]     LDI R1 DEVICE_KBDR ; Read keyboard data value
-[0x0208]     STI R1 DEVICE_DDR  ; Print key back out to device
-[0x020a]     RTI
+[0x0202]     LDI R0 DEVICE_KBSR ; Read keyboard, has side effect of setting KBDR
+[0x0203]     LDI R1 DEVICE_KBDR ; Read keyboard data value
+[0x0204]     STI R1 DEVICE_DDR  ; Print key back out to device
+[0x0205]     RTI
 ~~~~~~~~
-[0x020e] MEMSPACE_USER .FILL 0x3000
-[0x0210] DEVICE_KBSR   .FILL 0xFE00
-[0x0212] DEVICE_KBDR   .FILL 0xFE02
-[0x0214] DEVICE_DDR    .FILL 0xFE06
+[0x0206] MEMSPACE_USER .FILL 0x3000
+[0x0207] DEVICE_KBSR   .FILL 0xFE00
+[0x0208] DEVICE_KBDR   .FILL 0xFE02
+[0x0209] DEVICE_DDR    .FILL 0xFE06
 ~~~~~~~~
 ```
 
@@ -513,7 +513,7 @@ PC: 0x0200  PS: 0x8000
 (dbg) registers
 R0: 0x0000  R1: 0x0000  R2: 0x0000  R3: 0x0000
 R4: 0x0000  R5: 0x0000  R6: 0x3000  R7: 0x3000
-PC: 0x0202  PS: 0x8001
+PC: 0x0201  PS: 0x8001
 ```
 
 Machine execution can be resumed as normal using the `continue` command.
@@ -537,7 +537,7 @@ where to jump to:
 
 ```bash
 (dbg) jump HANDLE_KEY
-PC: 0x0204 (HANDLE_KEY)
+PC: 0x0202 (HANDLE_KEY)
 ```
 
 **Note:** arbitrary jumps may yield unexpected results, as the machine's registers
